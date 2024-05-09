@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title style="text-align: center;">AcademInsight: Communicative Purpose</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> <!-- Include Chart.js library -->
+    <style>
+        /* Import Lexend fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lexend+Exa&display=swap');
+        body {
+            font-family: "Lexend Exa", "Lexend", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            color: black; /* Set default text color to black */
+            background-image: url("https://i.ibb.co/0qs8DN7/JAP-6294-Edit-1-2-X2.jpg");
+            /* Center and scale the background image */
+            background-position: center;
+            background-size: cover;
+            /* Set background attachment to fixed to keep the image in place */
+            background-attachment: fixed;
+        }
+        
+        .center {
+            text-align: center;
+        }
+        .left-align {
+            text-align: left;
+        }
+        .centered-container {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+        }
+        .result-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 45%; /* Adjust the width as needed */
+            display: inline-block;
+            vertical-align: top;
+            background-color: rgba(255, 255, 255, 0.7); /* Add background color with transparency */
+        }
+        .sample-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 45%; /* Adjust the width as needed */
+            display: inline-block;
+            vertical-align: top;
+            margin-left: 10px; /* Add some margin between the result box and sample box */
+            background-color: rgba(255, 255, 255, 0.7); /* Add background color with transparency */
+        }
+        .sample-image {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .logo-container {
+            position: absolute; /* Position the logo absolutely */
+            top: 10px; /* Adjust top position */
+            right: 10px; /* Adjust right position */
+        }
+
+        /* Set title font color to white with text shadow effect */
+        h1 {
+            color: white;
+            text-shadow: 0 0 2.5px grey, 0 0 5px grey, 0 0 10px grey;
+        }
+
+        /* Style the file input */
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #f9f9f9;
+            color: black;
+            border-radius: 5px;
+        }
+
+        /* First Button Style */
+        .button-style-1 {
+            background-color: #4CAF50;
+            color: white;
+            font-family: "Lexend Exa", sans-serif;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px;
+        }
+
+        /* Second Button Style */
+        .button-style-2 {
+            background-color: #eb6774; /* Change color as per your preference */
+            color: white;
+            font-family: "Lexend Exa", sans-serif;
+            border: 2px solid #eb6774; /* Example border */
+            border-radius: 8px; /* Example border-radius */
+            padding: 12px 24px; /* Example padding */
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px;
+        }
+        /* Fade in animation */
+        @keyframes fadeInAnimation {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Apply fade in animation to all text content and buttons */
+        .fade-in {
+            opacity: 0;
+            animation: fadeInAnimation 1s ease-in forwards;
+        }
+
+        /* Style the file name display */
+        #file-name {
+            display: inline-block;
+            margin-left: 10px; /* Add margin between the file name and the button */
+        }
+        
+        /* Apply Lexend font to specific <p> and <div> elements */
+        p.lexend-text, div.lexend-text {
+            font-family: 'Lexend', sans-serif;
+        }
+    </style>
+</head>
+<body class="fade-in">
+    <!-- Logo -->
+    <div class="logo-container">
+        <a href="https://ibb.co/tBLkmfG"><img src="https://i.ibb.co/9sbN7Zp/CORAL-Logo-W.png" alt="JAP-6294-Edit-1-2-X2" style="width: 100px;"></a>
+    </div>
+    <br>
+    <br>
+    <h1 class="center">AcademInsight: Communicative Purpose</h1>
+    <br>
+    <br>
+    <div class="centered-container">
+    <p class="result-box" style="color: black;font-family: 'Lexend', sans-serif;">The tool in the current page works with Biber Tagger tags. To use it, please input a CSV file with the results of TagCount. If you don’t have a TagCount file, you might want to try the AcademInsight interface that uses the NLTK tagger.</p>
+    </div>
+    <br>
+    <br>
+    <div class="center">
+        <form method="post" enctype="multipart/form-data">
+            <label for="file-upload" class="custom-file-upload">
+                Choose File
+            </label>
+            <input id="file-upload" type="file" name="file" accept=".csv">
+            <span id="file-name"></span> <!-- Display the file name here -->
+            <button class="button-style-1" type="submit">Predict</button>
+        </form>
+        <form action="/" method="GET">
+        <button class="button-style-2" type="submit">Back to Home</button>
+        </form>
+    </div>
+
+    {% if predictions %}
+        {% for prediction in predictions %}
+            <div class="result-box fade-in lexend-text">
+                <h2>Prediction for {{ prediction.file_name }}</h2> <!-- Show file name -->
+                <p>Predicted Communicative Purpose: <span>{{ prediction.communicative_purpose }}</span>
+                </p>
+                <p>Top Probability: {{ '%.3f' % (prediction.probability * 100) }}%</p> <!-- Round top probability to nearest thousandth -->
+                <p>Probabilities:</p>
+                <ul>
+                    {% for label, probability in prediction.percentages.items() %}
+                        <li>
+                            {% if label == 0 %}
+                                <span style="color: rgba(255, 99, 132, 1);">To Argue</span>
+                            {% elif label == 1 %}
+                                <span style="color: rgba(54, 162, 235, 1);">To Explain</span>
+                            {% elif label == 2 %}
+                                <span style="color: rgba(87, 3, 121, 0.8);">To Give A Procedural Recount</span>
+                            {% endif %}
+                            : {{ '%.3f' % probability }}% <!-- Round probability to nearest thousandth -->
+                        </li>
+                    {% endfor %}
+                </ul>
+                <canvas id="chart{{ loop.index }}" width="200" height="100"></canvas> <!-- Smaller chart canvas -->
+            </div>
+            <div class="sample-box fade-in lexend-text">
+                <h2>Model Analysis and Explanation</h2>
+                <p>Our model suggests that your text input is likely meant
+                    {% if prediction.communicative_purpose == 'to argue' %}
+                        to argue.
+                    {% elif prediction.communicative_purpose == 'to explain' %}
+                        to explain.
+                    {% elif prediction.communicative_purpose == 'to give a procedural recount' %}
+                        to give a procedural recount.
+                    {% endif %}
+                    {% if prediction.communicative_purpose == 'to argue' %}
+                        Texts that are classified as argumentative usually have the following lexico-grammatical features:
+                        <br>
+                        <br>
+                        <b>Group nouns</b> (e.g., committee, bank, party)
+                        <br><b>Infinitive</b> (e.g., to work, to investigate)
+                        <br><b>Relative clause</b> (e.g., she opened the mailbox, which she never locked)
+                        <br><b>Perfect Aspect</b>  (e.g., have shown, has indicated)
+                        <br><b>3rd person pronouns</b> (e.g., he, she, it)
+                        <br>
+                        <br>
+                        Here is an example of a typical argumentative text:
+                        <br>
+                        <br>
+                "Thus in 'The History of Sexuality', Foucault attempts <u>to disprove</u> the thesis that Western <u>society</u> <u>has seen</u> a repression of sexuality since the 17th century and that sexuality <u>has been unmentionable</u>, something impossible <u>to speak</u> about. The concept of 'sexuality' itself is a result of this discourse. And the interdictions also have constructive power: <u>they</u> <u>have created</u> sexual identities and a multiplicity of <u>sexualities that would not <b>have existed</b> otherwise</u>."
+                    {% elif prediction.communicative_purpose == 'to explain' %}
+                        Texts that are classified as explanatory usually have the following lexico-grammatical features:
+                        <br>
+                        <br>
+                        <b>Adverbs of time</b> (e.g., soon, later, tomorrow)
+                        <br><b>Nominal pronouns</b> (e.g., somebody, anyone)
+                        <br><b>Perfect Aspect</b> (e.g., have shown, has indicated)
+                        <br><b>Genitive ‘s</b> (e.g., Ranke’s theory, Smith’s hypothesis)
+                        <br><b>Adverbs as adverbials</b> (e.g., it does not require alternation usually)
+                        <br>
+                        <br>
+                        Here is an example of a typical explanatory text:
+                        <br>
+                        <br>
+                "The <u>first</u> such reference was made in relation to his role as the artist chosen to depict the Tennis Court Oath of 1789.  (...) <u>Later</u>, the failure to establish this relationship until <u>after</u> the commencement of the Revolution suggests that the assumption that Revolutionary ideals appear in <u>David's work</u> is likely to <u>have been misplaced</u>. This is likely to be linked to the formation of a secular religion of Virtue at this time, <u>something</u> which the festivals organised by David formed a part of."
+                    {% elif prediction.communicative_purpose == 'to give a procedural recount' %}
+                        Texts that are classified as procedural recounts usually have the following lexico-grammatical features:
+                        <br>
+                        <br>
+                        <b>Mental verbs</b> (e.g., know, believe)
+                        <br><b>Technical nouns</b> (e.g., cell, electron)
+                        <br><b>Short passives</b> (e.g., the proposal was approved)
+                        <br><b>Finite verb complement clauses with verbs of communication</b> (e.g., We said that he won't come)
+                        <br><b>Quantity nouns</b> (e.g., date, minute)
+                        <br>
+                        <br>
+                        Here is an example of a typical procedural recount:
+                        <br>
+                        <br>
+                "The temperature of the fluid and measurements <u>could be sampled</u> using ‘PicoLog data logger software’. All pipework <u>was insulated</u> to minimise heat losses from the system. (...) Calculating the Cooling Water film heat transfer coefficients using the Dittus-Boelter correlation, we <u>found</u> values that show a divergence with increasingly turbulent flow. Based on the results of the cooling-heat experiment, <u>it could be suggested that an alternative correlation is required in order to account for the turbulent flows inside the annulus of the pipe</u>." 
+                    {% endif %}
+                </p>
+            </div>
+            <script>
+                // JavaScript code to create bar chart
+                var ctx{{ loop.index }} = document.getElementById('chart{{ loop.index }}').getContext('2d');
+                var chart{{ loop.index }} = new Chart(ctx{{ loop.index }}, {
+                    type: 'bar',
+                    data: {
+                        labels: ['To Argue', 'To Explain', 'To Give A Procedural Recount'], // Labels for x-axis
+                        datasets: [{
+                            label: 'Probabilities',
+                            data: [{{ prediction.percentages[0] }}, {{ prediction.percentages[1] }}, {{ prediction.percentages[2] }}], // Probabilities for y-axis
+                            backgroundColor: [ // Bar colors
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(87, 3, 121, 0.2)'
+                            ],
+                            borderColor: [ // Border colors
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(87, 3, 121, 0.8)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
+        {% endfor %}
+    {% endif %}
+
+    {% if error_message %}
+        <p class="center">Error processing input: {{ error_message }}</p>
+    {% endif %}
+</body>
+</html>

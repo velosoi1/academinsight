@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AcademInsight</title>
+    <style>
+        /* Import Lexend fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Lexend&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lexend+Exa&display=swap');
+
+        /* Apply Lexend font to the entire page */
+        body {
+            font-family: "Lexend Exa", "Lexend", sans-serif;
+            font-optical-sizing: auto;
+            font-style: normal;
+            color: black; /* Set default text color to black */
+        }
+
+        /* Set background image */
+        body {
+            background-image: url("https://i.ibb.co/0qs8DN7/JAP-6294-Edit-1-2-X2.jpg");
+            /* Center and scale the background image */
+            background-position: center;
+            background-size: cover;
+            /* Set background attachment to fixed to keep the image in place */
+            background-attachment: fixed;
+        }
+
+        /* Center-align content */
+        .center {
+            text-align: center;
+        }
+        .left-align {
+            text-align: left;
+        }
+        .result-box {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+            width: 45%; /* Adjust the width as needed */
+            display: inline-block;
+            vertical-align: top;
+            background-color: rgba(255, 255, 255, 0.7); /* Add background color with transparency */
+        }
+        /* Buttons style */
+        button {
+            background-color: #eb6774;
+            color: white;
+            font-family: "Lexend Exa", sans-serif;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px;
+        }
+
+        /* Set title font color to white with text shadow effect */
+        h1 {
+            color: white;
+            text-shadow: 0 0 5px grey, 0 0 10px grey, 0 0 15px grey;
+        }
+
+        /* Fade in animation */
+        @keyframes fadeInAnimation {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Apply fade in animation to all text content and buttons */
+        .fade-in {
+            opacity: 0;
+            animation: fadeInAnimation 1s ease-in forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="center fade-in">
+        <!-- Logo -->
+        <div class="logo-container">
+            <a href="https://ibb.co/tBLkmfG"><img src="https://i.ibb.co/9sbN7Zp/CORAL-Logo-W.png" alt="JAP-6294-Edit-1-2-X2" style="width: 100px;"></a>
+        </div>
+        <h1>Welcome to AcademInsight</h1>
+        <br>
+        <br>
+        <div class="result-box">
+        <h2>About AcademInsight - Biber Tagger</h2>
+            <p class= "left-align" style="font-family: 'Lexend', sans-serif;"><b>AcademInsight (Biber Tagger version)</b> classifies your text for discipline and communicative purpose drawing on the results of a Machine Learning model. This ML model was built based on the results of previous research that sought to describe the lexico-grammatical characteristics of undergraduate student writing (Gardner, Nesi and Biber, 2018; Hardy and Romer, 2013; Larsson et al, 2021, Goulart, 2021; in press). That is, Gardner, Nesi and Biber (2018), for example, showed that verb complement clauses and subordinate clauses were more common in Humanities, while premodifying nouns, attributive adjectives, and prepositions were more common in Physical Sciences. Therefore, these features were added to the model. This ML model presented the following results: <br><br><a href="https://ibb.co/nwkW0Wb"><img src="https://i.ibb.co/VLBKNKt/Screenshot-2024-04-25-at-3-18-27-PM.png" alt="Screenshot-2024-04-25-at-3-18-27-PM" border="0"></a> <br> <a href="https://ibb.co/mFqRfrd"><img src="https://i.ibb.co/Tq8w9DJ/Screenshot-2024-04-25-at-3-18-40-PM.png" alt="Screenshot-2024-04-25-at-3-18-40-PM" border="0"></a><br><br> As shown above, the accuracy for discipline is 0.68, and the accuracy for communicative purposes is 0.66.</p>
+        <form action="/" method="GET">
+        <button class="fade-in" type="submit">Back to Home</button>
+        </form>
+        </div>
+    </div>
+</body>
+</html>
