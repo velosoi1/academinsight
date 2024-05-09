@@ -8,6 +8,9 @@ import logging
 # Set up logging
 logging.basicConfig(filename='app.log', level=logging.DEBUG)
 
+# Use dynamic port binding for Heroku
+port = int(os.environ.get("PORT", 5000))
+
 # Load the CSV data into a Pandas DataFrame
 data = pd.read_csv('bibertrain.csv')
 
@@ -160,5 +163,5 @@ def predict_discipline():
     
     return render_template('index_discipline.html', predictions=None, error_message=None)
 
-if __name__ == '__main__':
-    app.run(host='localhost', port=5025)
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=port)
